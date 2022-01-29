@@ -1,6 +1,6 @@
 # Bacterial vs Viral proteases for nanoparticle sensors
 # Author: Aditya Rao
-# Contact: adityamr@stanford.edu
+# Contact: adityamr@stanford.edu or pkhatri@stanford.edu
 # Script for getting protease targets that distinguish bacterial and viral infections
 
 #NOTE: data are publicly available from NCBI GEO and EMBL-EBI ArrayExpress.
@@ -18,10 +18,12 @@ sapply(list.files(path="MANATEE_functions/", pattern="*.R",full.names=T), source
 
 #Split data into Discovery/Hold-out Validation and separately COCONUT conormalize each
 #BV.GSEs is comprised of publicly available datasets from NCBI GEO and EMBL-EBI ArrayExpress
+#The datasets are listed in the manuscript in Supplementary Table 1 and 2.
 BV.discovalid = makeDiscoValid(BV.GSEs, use.pheno.class = TRUE, remove.samples=c("Healthy","Remove","C. Albicans"),
                                seed=36362, conorm.type = "COCONUT",forced.discovery = "GSE16129GPL96")
 
 #format the Discovery and Hold-out Validation data
+# List of datasets used for Discovery and Hold-out Validation are listed in Supplementary Table 1 and 2
 BV.discovalid$Discovery$pheno$group = droplevels(BV.discovalid$Discovery$pheno$group)
 BV.discovalid$Validation$pheno$group = droplevels(BV.discovalid$Validation$pheno$group)
 BV.discovalid$Discovery$pheno$group2 = BV.discovalid$Discovery$pheno$group
